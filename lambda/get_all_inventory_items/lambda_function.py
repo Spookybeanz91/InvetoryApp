@@ -1,7 +1,7 @@
 import json
 import boto3
 from decimal import Decimal
-
+# Trigger deployment
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('Inventory')
