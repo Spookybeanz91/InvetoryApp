@@ -3,7 +3,7 @@ import boto3
 import uuid
 from decimal import Decimal
 
-# Initialize DynamoDB client
+# Initialize DynamoDB clients
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('Inventory')
 #Grady Mooney matt
