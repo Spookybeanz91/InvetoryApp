@@ -1,12 +1,12 @@
 import json
 import boto3
-from ulid import ULID
+import uuid
 from decimal import Decimal
-
+#Robby
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('Inventory')
-
+#Grady Mooney matt
 
 def lambda_handler(event, context):
     """
@@ -18,11 +18,11 @@ def lambda_handler(event, context):
             body = json.loads(event['body'])
         else:
             body = event.get('body', {})
-        
+
         # Validate required fields
         required_fields = ['name', 'description', 'qty', 'price', 'location_id']
         missing_fields = [field for field in required_fields if field not in body]
-        
+
         if missing_fields:
             return {
                 'statusCode': 400,
@@ -35,10 +35,10 @@ def lambda_handler(event, context):
                     'missing_fields': missing_fields
                 })
             }
-        
-        # Generate a unique ID using ULID
-        item_id = str(ULID())
-        
+
+        # Generate a unique ID using UUID (instead of ULID)
+        item_id = str(uuid.uuid4())
+
         # Create the item object
         item = {
             'id': item_id,
@@ -48,10 +48,10 @@ def lambda_handler(event, context):
             'price': Decimal(str(body['price'])),
             'location_id': int(body['location_id'])
         }
-        
+
         # Put the item in DynamoDB
         table.put_item(Item=item)
-        
+
         return {
             'statusCode': 201,
             'headers': {
@@ -71,7 +71,7 @@ def lambda_handler(event, context):
                 }
             })
         }
-        
+
     except ValueError as ve:
         return {
             'statusCode': 400,
