@@ -2,7 +2,7 @@ import json
 import boto3
 import uuid
 from decimal import Decimal
-#Robby
+#Robby moar
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('Inventory')
