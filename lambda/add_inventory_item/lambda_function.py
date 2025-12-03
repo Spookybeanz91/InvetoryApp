@@ -2,7 +2,7 @@ import json
 import boto3
 import uuid
 from decimal import Decimal
-
+#grady
 # Initialize DynamoDB clients
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('Inventory')
